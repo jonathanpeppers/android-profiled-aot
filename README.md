@@ -31,6 +31,8 @@ For `aprofutil`, you can simply copy one of:
   * `bin/Debug/lib/xamarin.android/xbuild/Xamarin/Android/aprofutil.exe`
   * `bin/Debug/lib/xamarin.android/xbuild/Xamarin/Android/aprofutil.pdb`
 
+I updated the `aprofutil` script to use `aprofutil.exe` in the current directory.
+
 For `libmono-profiler-aot.so`, start with
 [dotnet/runtime#57511][dotnet/runtime#57511] and rebase it on top of
 the release branch of choice, such as `release/6.0`.
