@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <AProfUtilToolPath>$(MSBuildThisFileDirectory)binaries/</AProfUtilToolPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <_ProfilerRIDs Include="android-arm;android-arm64;android-x64;android-x86" />
+    <AndroidNativeLibrary Include="@(_ProfilerRIDs->'$(MSBuildThisFileDirectory)/binaries/%(Identity)/libmono-profiler-aot.so')" />
+  </ItemGroup>
+</Project>

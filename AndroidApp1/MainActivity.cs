@@ -13,6 +13,7 @@ using Google.Android.Material.Snackbar;
 
 namespace AndroidApp1
 {
+    [Register("AndroidApp1.MainActivity")]
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
