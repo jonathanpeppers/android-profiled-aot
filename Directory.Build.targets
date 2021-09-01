@@ -1,10 +1,17 @@
 <Project>
   <PropertyGroup>
+    <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AProfUtilToolPath>$(MSBuildThisFileDirectory)binaries/</AProfUtilToolPath>
   </PropertyGroup>
   <ItemGroup>
     <_ProfilerRIDs Include="android-arm;android-arm64;android-x64;android-x86" />
-    <AndroidNativeLibrary Include="@(_ProfilerRIDs->'$(MSBuildThisFileDirectory)/binaries/%(Identity)/libmono-profiler-aot.so')" />
-    <AndroidAotProfile Include="custom.aprof" Condition=" '$(RunAOTCompilation)' == 'true' " />
+    <AndroidNativeLibrary
+        Condition=" '$(RunAOTCompilation)' != 'true' "
+        Include="@(_ProfilerRIDs->'$(MSBuildThisFileDirectory)/binaries/%(Identity)/libmono-profiler-aot.so')"
+    />
+    <AndroidAotProfile
+        Condition=" '$(RunAOTCompilation)' == 'true' "
+        Include="custom.aprof"
+    />
   </ItemGroup>
 </Project>

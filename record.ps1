@@ -16,6 +16,9 @@ Start-Sleep -Seconds $seconds
 # Pull the custom.aprof file from the device
 & $dotnet build $csproj -t:FinishAotProfiling -bl:logs/$app-FinishAotProfiling.binlog
 
+# Clear debug.mono.profile
+& adb shell setprop debug.mono.profile '""'
+
 # Build aotprofile-tool if needed
 $aotprofile_tool = "external/aotprofile-tool/bin/Debug/aotprofile-tool"
 if (-Not (Test-Path $aotprofile_tool))

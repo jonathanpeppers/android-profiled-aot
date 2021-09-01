@@ -17,6 +17,7 @@ $package = "com.androidaot.$app"
 # Setup adb logcat settings
 & adb logcat -G 15M
 & adb logcat -c
+& adb shell setprop debug.mono.profile '""'
 
 # Launch the app N times
 & adb shell am force-stop $package
