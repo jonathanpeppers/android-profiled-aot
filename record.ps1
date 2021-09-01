@@ -17,7 +17,7 @@ Start-Sleep -Seconds $seconds
 & $dotnet build $csproj -t:FinishAotProfiling -bl:logs/$app-FinishAotProfiling.binlog
 
 # Clear debug.mono.profile
-& adb shell setprop debug.mono.profile '""'
+& adb shell setprop debug.mono.profile "''"
 
 # Build aotprofile-tool if needed
 $aotprofile_tool = "external/aotprofile-tool/bin/Debug/aotprofile-tool"

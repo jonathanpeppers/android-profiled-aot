@@ -20,7 +20,7 @@ $package = "com.androidaot.$app"
 # Setup adb logcat settings
 & adb logcat -G 15M
 & adb logcat -c
-& adb shell setprop debug.mono.profile '""'
+& adb shell setprop debug.mono.profile "''"
 
 # Clear window animations
 & adb shell settings put global window_animation_scale 0
