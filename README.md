@@ -20,6 +20,10 @@ profile to be distributed with the .NET 6 Android workload or .NET
 MAUI. If you are recording a profile for your own app, just use the
 profile as-is.
 
+[xamarin-android#6171]: https://github.com/xamarin/xamarin-android/pull/6171
+[dotnet/runtime#57511]: https://github.com/dotnet/runtime/pull/57511
+[radekdoulik/aotprofile-tool]: https://github.com/radekdoulik/aotprofile-tool
+
 ## How do you update files in `binaries` folder?
 
 For `aprofutil`, you can simply copy one of:
@@ -70,6 +74,28 @@ Copy the files to:
 * `binaries/android-x64/`
 * `binaries/android-x86/`
 
-[xamarin-android#6171]: https://github.com/xamarin/xamarin-android/pull/6171
-[dotnet/runtime#57511]: https://github.com/dotnet/runtime/pull/57511
-[radekdoulik/aotprofile-tool]: https://github.com/radekdoulik/aotprofile-tool
+## Recording new profiles
+
+To update the profiles recorded:
+
+```powershell
+.\record.ps1
+```
+
+If you need to use a local .NET 6 build of the Android workload, use:
+
+```powershell
+.\record.ps1 -dotnet ~\android-toolchain\dotnet\dotnet
+```
+
+## Testing the profile
+
+Run:
+
+```powershell
+.\test.ps1
+# or
+.\test.ps1 -dotnet ~\android-toolchain\dotnet\dotnet
+```
+
+This will launch the app 10 times and calculate the average startup time.
