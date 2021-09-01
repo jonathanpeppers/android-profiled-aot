@@ -1,6 +1,9 @@
 param (
     [string] $dotnet = 'dotnet',
     [string] $app = 'AndroidApp1',
+    [string] $configuration = 'Release',
+    [bool] $aot = $true,
+    [string] $extra = '',
     [int] $seconds = 3,
     [int] $iterations = 10
 )
@@ -12,17 +15,22 @@ $package = "com.androidaot.$app"
 & adb uninstall $package
 
 # Build the app in Release+AOT mode
-& $dotnet build $csproj -t:Install -c Release -p:RunAOTCompilation=true -bl:logs/$app-RunAOTCompilation.binlog
+& $dotnet build $csproj -t:Clean,Install -c $configuration -p:RunAOTCompilation=$aot $extra -bl:logs/$app-RunAOTCompilation.binlog
 
 # Setup adb logcat settings
 & adb logcat -G 15M
 & adb logcat -c
 & adb shell setprop debug.mono.profile '""'
 
+# Clear window animations
+& adb shell settings put global window_animation_scale 0
+& adb shell settings put global transition_animation_scale 0
+& adb shell settings put global animator_duration_scale 0
+
 # Launch the app N times
 & adb shell am force-stop $package
 for ($i = 1; $i -le $iterations; $i++) {
-    & $dotnet build $project -t:Run -c Release -p:RunAOTCompilation=true -bl:logs/$app-Run.binlog -v:quiet -nologo
+    & $dotnet build $project -t:Run -c $configuration -p:RunAOTCompilation=$aot $extra -bl:logs/$app-Run.binlog -v:quiet -nologo
     Start-Sleep -Seconds $seconds
     & adb shell am force-stop $package
 }

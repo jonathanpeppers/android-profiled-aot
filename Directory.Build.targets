@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
     <AProfUtilToolPath>$(MSBuildThisFileDirectory)binaries/</AProfUtilToolPath>
   </PropertyGroup>
   <ItemGroup>
