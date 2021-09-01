@@ -30,7 +30,7 @@ $package = "com.androidaot.$app"
 # Launch the app N times
 & adb shell am force-stop $package
 for ($i = 1; $i -le $iterations; $i++) {
-    & $dotnet build $project -t:Run -c $configuration -p:RunAOTCompilation=$aot $extra -bl:logs/$app-Run.binlog -v:quiet -nologo
+    & $dotnet build $csproj -t:Run -c $configuration -p:RunAOTCompilation=$aot $extra -bl:logs/$app-Run.binlog -v:quiet -nologo
     Start-Sleep -Seconds $seconds
     & adb shell am force-stop $package
 }
