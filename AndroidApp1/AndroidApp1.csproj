@@ -2,11 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net6.0-android</TargetFramework>
     <OutputType>Exe</OutputType>
-    <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.2" />
   </ItemGroup>
 </Project>
