@@ -20,6 +20,7 @@ $package = "com.androidaot.$app"
 # Setup adb logcat settings
 & adb logcat -G 15M
 & adb logcat -c
+& adb shell setprop debug.mono.log "''"
 & adb shell setprop debug.mono.profile "''"
 
 # Clear window animations
@@ -46,6 +47,10 @@ $log = Get-Content $adb_log | Select-String -Pattern 'Activity.*Manager.+Display
 if ($log.Count -eq 0)
 {
     Write-Error "No ActivityManager messages found"
+}
+if ($log.Count -ne $iterations)
+{
+    Write-Error "Expected $iterations ActivityManager messages, found $($log.Count)"
 }
 
 $sum = 0;
