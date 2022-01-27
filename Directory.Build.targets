@@ -2,6 +2,7 @@
   <PropertyGroup>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
     <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
+    <MauiUseDefaultAotProfile>false</MauiUseDefaultAotProfile>
     <AProfUtilToolPath>$(MSBuildThisFileDirectory)binaries/</AProfUtilToolPath>
   </PropertyGroup>
   <ItemGroup>
