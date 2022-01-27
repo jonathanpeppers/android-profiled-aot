@@ -6,8 +6,14 @@ param (
 $ErrorActionPreference = 'Stop'
 $csproj = "$app/$app.csproj"
 
+# Stop the app if it's running & clear the log
+& adb shell am force-stop com.androidaot.$app
+& adb logcat -c
+
 # Build & launch app with profiler
 & $dotnet build $csproj -t:BuildAndStartAotProfiling -bl:logs/$app-BuildAndStartAotProfiling.binlog
+
+if (!$?) { throw "BuildAndStartAotProfiling failed." }
 
 # Just delay for a bit
 Write-Host 'Waiting for app to launch...'
@@ -15,6 +21,8 @@ Start-Sleep -Seconds $seconds
 
 # Pull the custom.aprof file from the device
 & $dotnet build $csproj -t:FinishAotProfiling -bl:logs/$app-FinishAotProfiling.binlog
+
+if (!$?) { throw "FinishAotProfiling failed." }
 
 # Clear debug.mono.profile
 & adb shell setprop debug.mono.profile "''"

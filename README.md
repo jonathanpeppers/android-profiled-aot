@@ -88,6 +88,36 @@ If you need to use a local .NET 6 build of the Android workload, use:
 .\record.ps1 -dotnet ~\android-toolchain\dotnet\dotnet
 ```
 
+### Updating dotnet/maui's profile
+
+1. [Build dotnet/maui from source](https://github.com/dotnet/maui/blob/main/.github/DEVELOPMENT.md)
+
+And you can now use: `C:\src\maui\bin\dotnet\dotnet.exe`
+
+2. Update `MauiApp1`:
+
+```
+cd MauiApp1
+rm -r *
+C:\src\maui\bin\dotnet\dotnet.exe new maui
+```
+
+Remove any non-Android files, like `Platforms\Windows`, etc.
+
+Use a single: `<TargetFramework>net6.0-android</TargetFramework>`.
+
+Make sure to keep: `<ApplicationId>com.androidaot.MauiApp1</ApplicationId>`
+
+Make sure to keep: `[Register("MauiApp1.MainActivity")]`
+
+Remove: `<UseInterpreter Condition="'$(Configuration)' == 'Debug'">True</UseInterpreter>`
+
+3. Attach a device, and record the profile:
+
+```powershell
+.\record.ps1 -dotnet C:\src\maui\bin\dotnet\dotnet.exe -app MauiApp1
+```
+
 ## Testing the profile
 
 Run:
