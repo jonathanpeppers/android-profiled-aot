@@ -1,7 +1,4 @@
-﻿using System;
-using Android.App;
-using Android.OS;
-using Android.Runtime;
+﻿using Android.Runtime;
 using Android.Views;
 using AndroidX.AppCompat.App;
 using AndroidX.AppCompat.Widget;
@@ -10,6 +7,7 @@ using AndroidX.DrawerLayout.Widget;
 using Google.Android.Material.FloatingActionButton;
 using Google.Android.Material.Navigation;
 using Google.Android.Material.Snackbar;
+using Toolbar = AndroidX.AppCompat.Widget.Toolbar;
 
 namespace AndroidApp1
 {
@@ -17,28 +15,28 @@ namespace AndroidApp1
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
-            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar)!;
             SetSupportActionBar(toolbar);
 
-            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab)!;
             fab.Click += FabOnClick;
 
-            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout)!;
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
             drawer.AddDrawerListener(toggle);
             toggle.SyncState();
 
-            NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view)!;
             navigationView.SetNavigationItemSelectedListener(this);
         }
 
         public override void OnBackPressed()
         {
-            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout)!;
             if(drawer.IsDrawerOpen(GravityCompat.Start))
             {
                 drawer.CloseDrawer(GravityCompat.Start);
@@ -49,7 +47,7 @@ namespace AndroidApp1
             }
         }
 
-        public override bool OnCreateOptionsMenu(IMenu menu)
+        public override bool OnCreateOptionsMenu(IMenu? menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu_main, menu);
             return true;
@@ -66,11 +64,10 @@ namespace AndroidApp1
             return base.OnOptionsItemSelected(item);
         }
 
-        private void FabOnClick(object sender, EventArgs eventArgs)
+        private void FabOnClick(object? sender, EventArgs eventArgs)
         {
-            View view = (View) sender;
-            Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
-                .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            Snackbar.Make(sender as View, "Replace with your own action", Snackbar.LengthLong)
+                .SetAction("Action", (Android.Views.View.IOnClickListener?)null).Show();
         }
 
         public bool OnNavigationItemSelected(IMenuItem item)
@@ -102,7 +99,7 @@ namespace AndroidApp1
 
             }
 
-            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout)!;
             drawer.CloseDrawer(GravityCompat.Start);
             return true;
         }
