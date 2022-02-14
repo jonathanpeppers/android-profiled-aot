@@ -11,7 +11,7 @@ $csproj = "$app/$app.csproj"
 & adb logcat -c
 
 # Build & launch app with profiler
-& $dotnet build $csproj -t:BuildAndStartAotProfiling -bl:logs/$app-BuildAndStartAotProfiling.binlog
+& $dotnet build $csproj -c Release -p:RunAOTCompilation=false -t:BuildAndStartAotProfiling -bl:logs/$app-BuildAndStartAotProfiling.binlog
 
 if (!$?) { throw "BuildAndStartAotProfiling failed." }
 
@@ -20,7 +20,7 @@ Write-Host 'Waiting for app to launch...'
 Start-Sleep -Seconds $seconds
 
 # Pull the custom.aprof file from the device
-& $dotnet build $csproj -t:FinishAotProfiling -bl:logs/$app-FinishAotProfiling.binlog
+& $dotnet build $csproj -c Release -t:FinishAotProfiling -bl:logs/$app-FinishAotProfiling.binlog
 
 if (!$?) { throw "FinishAotProfiling failed." }
 
