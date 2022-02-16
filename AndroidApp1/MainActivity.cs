@@ -32,6 +32,8 @@ namespace AndroidApp1
 
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view)!;
             navigationView.SetNavigationItemSelectedListener(this);
+
+            _ = CommonMethods.Invoke();
         }
 
         public override void OnBackPressed()

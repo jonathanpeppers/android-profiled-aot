@@ -12,4 +12,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.4" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonMethods.cs" Link="CommonMethods.cs" />
+  </ItemGroup>
 </Project>

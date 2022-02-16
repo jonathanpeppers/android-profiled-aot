@@ -44,4 +44,8 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Include="..\CommonMethods.cs" Link="CommonMethods.cs" />
+	</ItemGroup>
+
 </Project>

@@ -7,6 +7,12 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
+		Start();
+	}
+
+	private async void Start()
+	{
+		CounterLabel.Text = await CommonMethods.Invoke();
 	}
 
 	private void OnCounterClicked(object sender, EventArgs e)
