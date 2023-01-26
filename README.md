@@ -1,3 +1,7 @@
+NOTE: if you are looking to record a custom AOT profile in .NET 6 or 7, then you want this repo instead:
+
+https://github.com/jonathanpeppers/Mono.Profiler.Android
+
 # android-profiled-aot
 
 This is a repo for recording .NET 6 AOT profiles.
